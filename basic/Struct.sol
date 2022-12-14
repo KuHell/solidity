@@ -2,7 +2,7 @@
 pragma solidity >=0.8.0 <0.9.0;
 
 contract Struct {
-		//구조체
+    //구조체
     struct Product {
         string name;
         uint256 price;
