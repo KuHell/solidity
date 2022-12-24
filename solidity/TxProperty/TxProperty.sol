@@ -17,6 +17,4 @@ contract TxProperty{
   function checkvalueT() external payable {
     uint value = msg.value;
   }
-
-  
 } 
