@@ -22,7 +22,7 @@ contract NFT is ERC721Enumerable, Ownable {
     constructor(string memory _name, string memory _symbol) ERC721(_name, _symbol){}
 
     // internal
-    function _baseURI() internal view virtual override returns (string memory) 
+    function _baseURI() internal view virtual override returns(string memory) 
     {
         return "ipfs://QmUsjyVGzbSSrtdPYNFa61KAxDhrCV4ZgPqJbaVDWkcUXg/";
     }
@@ -36,7 +36,6 @@ contract NFT is ERC721Enumerable, Ownable {
         require(_mintAmount <= maxMintAmount, "you can't mint more than maxAmount");
         require(supply + _mintAmount <= maxSupply, "every NFTs are already minted");
         require(msg.value >= cost * _mintAmount, "you have to pay exact cost");
-        
         uint256 randomNumber = getRandomNumber(_to, maxSupply);
         uint256 tokenId = supply + _mintAmount;
         tokenMetadataNo[tokenId] = randomNumber;
@@ -44,11 +43,10 @@ contract NFT is ERC721Enumerable, Ownable {
         emit result(tokenId, randomNumber, true);
     }
 
-    function walletOfOwner(address _owner) public view returns (uint256[] memory)
+    function walletOfOwner(address _owner) public view returns(uint256[] memory)
     {
         uint256 ownerTokenCount = balanceOf(_owner);
         uint256[] memory tokenIds = new uint256[](ownerTokenCount);
-
         for (uint256 i; i < ownerTokenCount; i++) 
         {
             tokenIds[i] = tokenOfOwnerByIndex(_owner, i);
